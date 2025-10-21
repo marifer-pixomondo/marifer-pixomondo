@@ -1,0 +1,19 @@
+# Add 'documentation' label if any .md files change
+documentation:
+  - changed-files:
+    - any-glob-to-any-file: '**/*.md'
+
+# Add 'tests' label if test files change
+tests:
+  - changed-files:
+    - any-glob-to-any-file:
+      - 'tests/**/*'
+      - '**/*test.py'
+
+# Add 'dependencies' label if requirements change
+dependencies:
+  - changed-files:
+    - any-glob-to-any-file:
+      - 'requirements.txt'
+      - 'package.json'
+      - 'package-lock.json'
