@@ -14,3 +14,10 @@ Here are some ideas to get you started:
 - 😄 Pronouns: ...
 - ⚡ Fun fact: ...
 -->
+
+
+- 🔭 I’m currently working on Innovation Labs @ PIXOMONDO
+- 🌱 I’m currently learning GEN AI workflows (work), pilates (personal)
+- 💬 Ask me about anything ! I really do love a chat
+- 📫 How to reach me: on teams at pixo or via linkedIn as Marifer Michel
+- ⚡ Fun fact: In 2019 I fell on my way back from work and I lost a tooth, the front one. Yes, it was painful as hell. Yes, I dont have my tooth anymore but they did an amazing reconstructive job and I can smile confidently !
