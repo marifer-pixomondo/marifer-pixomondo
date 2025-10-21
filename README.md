@@ -22,4 +22,5 @@ Here are some ideas to get you started:
 - 📫 How to reach me: on teams at pixo or via linkedIn as Marifer Michel
 - ⚡ Fun fact: In 2019 I fell on my way back from work and I lost a tooth, the front one.
   - Yes, it was painful as hell. 
-  - Yes, I dont have my tooth anymore, but they did an amazing reconstructive job and I can smile confidently !
+  - Yes, I dont have my ✨original✨tooth anymore, but they did an amazing reconstructive job,
+  and I can smile confidently !
