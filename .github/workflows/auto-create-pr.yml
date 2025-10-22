@@ -6,7 +6,7 @@ on:
 
 jobs:
   create-branch-and-pr:
-    # Only run if comment is on an issue (not PR) and contains the trigger.
+#   Only run if comment is on an issue (not PR) and contains the trigger.
     if: github.event.issue.pull_request == null && contains(github.event.comment.body, '/create-pr')
     runs-on: ubuntu-latest
 
@@ -24,12 +24,12 @@ jobs:
       - name: Set up variables
         id: vars
         run: |
-          # Create branch name from issue number and title.
+#         Create branch name from issue number and title.
           ISSUE_NUMBER=${{ github.event.issue.number }}
           ISSUE_TITLE="${{ github.event.issue.title }}"
           COMMENT_BODY="${{ github.event.comment.body }}"
           
-          # Extract branch type from comment (feature, bugfix, hotfix, release, or default to feature).
+#         Extract branch type from comment (feature, bugfix, hotfix, release, or default to feature).
           if echo "$COMMENT_BODY" | grep -q "/create-pr /bugfix"; then
             BRANCH_TYPE="bugfix"
           elif echo "$COMMENT_BODY" | grep -q "/create-pr /feature"; then
@@ -38,12 +38,12 @@ jobs:
             BRANCH_TYPE="hotfix"
           elif echo "$COMMENT_BODY" | grep -q "/create-pr /release"; then
             BRANCH_TYPE="release"
+#         Default to feature if no type specified
           else
-            # Default to feature if no type specified
             BRANCH_TYPE="feature"
           fi
           
-          # Clean up the title for the branch name.
+#         Clean up the title for the branch name.
           CLEAN_TITLE=$(echo "$ISSUE_TITLE" | tr '[:upper:]' '[:lower:]' | tr -cs '[:alnum:]' '-' | sed 's/^-//; s/-$//' | cut -c1-50)
           BRANCH_NAME="${BRANCH_TYPE}/${CLEAN_TITLE}"
           
@@ -88,16 +88,17 @@ jobs:
           # Read PR template if it exists, otherwise just add the issue to Close it from.
           if [ -f .github/pull_request_template.md ]; then
             PR_BODY=$(cat .github/pull_request_template.md)
-            PR_BODY="${PR_BODY}
-
-          Closes #${{ steps.vars.outputs.issue_number }}"
+            ISSUE_NUMBER="${{ steps.vars.outputs.issue_number }}"
+            ISSUE_TITLE="${{ github.event.issue.title }}"
+            PR_BODY=$(echo "$PR_BODY" | sed "/## :pencil2: Description/a\\\\${ISSUE_TITLE}")
+            PR_BODY=$(echo "$PR_BODY" | sed "s/Closes #/Closes #${ISSUE_NUMBER}/")
           else
             PR_BODY="Closes #${{ steps.vars.outputs.issue_number }}"
           fi
-          
-          # Create draft PR with template body and assignees
+          DRAFT_NAME="DRAFT:"
+#         Create draft PR with template body and assignees
           gh pr create \
-            --title "${{ github.event.issue.title }}" \
+            --title "$DRAFT_NAME ${{ github.event.issue.title }}" \
             --body "$PR_BODY" \
             --draft \
             --base ${{ github.event.repository.default_branch }} \
