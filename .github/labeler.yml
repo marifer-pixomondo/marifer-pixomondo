@@ -10,6 +10,12 @@ tests:
       - 'tests/**/*'
       - '**/*test.py'
 
+# Add 'workflows' label if yml file changes
+workflows:
+  - changed-files:
+    - any-glob-to-any-file:
+      - '**/workflows/*.yml'
+
 # Add 'dependencies' label if requirements change
 dependencies:
   - changed-files:
