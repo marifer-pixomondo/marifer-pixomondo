@@ -36,7 +36,7 @@ jobs:
             BRANCH_TYPE="feature"
           elif echo "$COMMENT_BODY" | grep -q "/create-pr /hotfix"; then
             BRANCH_TYPE="hotfix"
-          elif echo "$COMMENT_BODY" | grep -q "/create-pr /refactor"; then
+          elif echo "$COMMENT_BODY" | grep -q "/create-pr /release"; then
             BRANCH_TYPE="release"
           else
             # Default to feature if no type specified
