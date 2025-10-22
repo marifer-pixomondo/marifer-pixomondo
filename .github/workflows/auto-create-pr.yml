@@ -63,8 +63,8 @@ jobs:
       - name: Get issue assignees
         id: assignees
         env:
-          GH_TOKEN: ${{ github.token }}
-        run: |          
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+        run: |
           # Use the issue author
           if [ -z "$ASSIGNEES" ]; then
             ASSIGNEES="${{ github.event.issue.user.login }}"
@@ -74,7 +74,7 @@ jobs:
 
       - name: Create Draft PR
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.GH_PAT }}
         run: |
           # Read PR template if it exists, otherwise just add the issue to Close it from.
           if [ -f .github/pull_request_template.md ]; then
