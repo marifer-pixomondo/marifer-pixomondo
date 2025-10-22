@@ -12,10 +12,9 @@ Closes #
 
 - [ ] Added or verified tests
 
-:shorts:
-- [ ] Pants Lint Pass
-- [ ] Pants Check Pass
-- [ ] Pants Tests Pass
+- [ ] :shorts: Pants Lint Pass
+- [ ] :shorts: Pants Check Pass
+- [ ] :shorts: Pants Tests Pass
 
 ## :dart: TESTS: List of New Tests Added
 
