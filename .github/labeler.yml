@@ -7,9 +7,8 @@ documentation:
 tests:
   - changed-files:
     - any-glob-to-any-file:
-      - 'tests/**/*'
-      - 'tests/**'
-      - '**/*test*.py'
+      - '**/tests/**.py'
+      - '**/tests/**/*test*.py'
 
 # Add 'workflows' label if yml file changes
 workflows:
