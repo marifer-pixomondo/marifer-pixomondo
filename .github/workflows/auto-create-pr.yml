@@ -60,6 +60,15 @@ jobs:
           git checkout -b ${{ steps.vars.outputs.branch_name }}
           git push origin ${{ steps.vars.outputs.branch_name }}
 
+          # Check if branch has any commits different from base.
+          if git diff --quiet origin/${{ github.event.repository.default_branch }}..HEAD; then
+            echo "No commits found, adding an empty commit."
+            git commit --allow-empty -m "chore: Dummy commit for PR Creation"
+            git push origin HEAD
+          else
+            echo "Branch already has unique commits."
+          fi
+
       - name: Get issue assignees
         id: assignees
         env:
