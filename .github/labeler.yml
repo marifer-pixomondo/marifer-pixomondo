@@ -8,7 +8,8 @@ tests:
   - changed-files:
     - any-glob-to-any-file:
       - 'tests/**/*'
-      - '**/*test.py'
+      - 'tests/**'
+      - '**/*test*.py'
 
 # Add 'workflows' label if yml file changes
 workflows:
