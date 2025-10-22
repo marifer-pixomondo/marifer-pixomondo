@@ -24,12 +24,12 @@ jobs:
       - name: Set up variables
         id: vars
         run: |
-#         Create branch name from issue number and title.
-          ISSUE_NUMBER=${{ github.event.issue.number }}
+          # Create branch name from issue number and title.
+          ISSUE_NUMBER="${{ github.event.issue.number }}"
           ISSUE_TITLE="${{ github.event.issue.title }}"
           COMMENT_BODY="${{ github.event.comment.body }}"
           
-#         Extract branch type from comment (feature, bugfix, hotfix, release, or default to feature).
+          # Extract branch type from comment (feature, bugfix, hotfix, release, or default to feature).
           if echo "$COMMENT_BODY" | grep -q "/create-pr /bugfix"; then
             BRANCH_TYPE="bugfix"
           elif echo "$COMMENT_BODY" | grep -q "/create-pr /feature"; then
@@ -38,12 +38,12 @@ jobs:
             BRANCH_TYPE="hotfix"
           elif echo "$COMMENT_BODY" | grep -q "/create-pr /release"; then
             BRANCH_TYPE="release"
-#         Default to feature if no type specified
+          # Default to feature if no type specified
           else
             BRANCH_TYPE="feature"
           fi
           
-#         Clean up the title for the branch name.
+          # Clean up the title for the branch name.
           CLEAN_TITLE=$(echo "$ISSUE_TITLE" | tr '[:upper:]' '[:lower:]' | tr -cs '[:alnum:]' '-' | sed 's/^-//; s/-$//' | cut -c1-50)
           BRANCH_NAME="${BRANCH_TYPE}/${CLEAN_TITLE}"
           
@@ -96,7 +96,7 @@ jobs:
             PR_BODY="Closes #${{ steps.vars.outputs.issue_number }}"
           fi
           DRAFT_NAME="DRAFT:"
-#         Create draft PR with template body and assignees
+          # Create draft PR with template body and assignees
           gh pr create \
             --title "$DRAFT_NAME ${{ github.event.issue.title }}" \
             --body "$PR_BODY" \
